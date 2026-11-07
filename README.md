@@ -93,19 +93,19 @@ Wispr Flow Insights at the time of submission: **151 words per minute (shown as 
    ![Wispr Flow Highlights](wispr-highlights.png)
 
 2. **Top 0.1% Speed Proof (151 WPM):**  
-   ![Wispr Speed Proof](wispr speed Proof.png)
+   ![Wispr Speed Proof](wispr-speed.png)
 
 3. **Total Words Dictated (1,450 Words):**  
-   ![Wispr Words Proof](wispr words Proof.png)
+   ![Wispr Words Proof](wispr-words.png)
 
 4. **AI Prompts Breakdown (88% Prompts):**  
-   ![Wispr Prompts Breakdown](wispr prompts Breakdown.png)
+   ![Wispr Prompts Breakdown](wispr-prompts.png)
 
 5. **3-Day Development Streak:**  
-   ![Wispr Streak Proof](wispr-streak Proof.png)
+   ![Wispr Streak Proof](wispr-streak.png)
 
 6. **Activity Heatmap Telemetry:**  
-   ![Wispr Activity Heatmap](wispr-activity Heatmap.png)
+   ![Wispr Activity Heatmap](wispr-activity.png)
 
 
 ## Limitations and next steps
