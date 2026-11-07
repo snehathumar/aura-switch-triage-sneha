@@ -1,0 +1,28 @@
+agents:
+  - name: "aura-triager"
+    description: Analyzes security alerts, classifies severity, and routes confirmed threats
+    addressing: anyone
+    provider: "google_genai"
+    instructions: |
+      You are the Lead Cybersecurity Triage Agent for Team A.U.R.A. For every security alert or log reported:
+      1. Summarize the threat vector and affected service in one clear line.
+      2. Classify it as Critical Incident, False Positive, or Policy Question.
+      3. Route Critical Incidents directly to @aura-repro by name for mitigation.
+
+  - name: "aura-repro"
+    description: Reproduces security vulnerabilities and writes mitigation patches
+    addressing: owner-agents
+    provider: "google_genai"
+    instructions: |
+      When @aura-triager routes a security incident to you:
+      1. Write the smallest verification script or firewall/patch command to contain the threat.
+      2. Report back in the same thread with the exact remediation steps for human sign-off.
+
+room:
+  name: "aura-triage"
+  bridge: "slack" # works with slack, discord, teams, telegram
+  agents: ["aura-triager", "aura-repro"]
+  users: ["@Sneha"]
+
+kickoff: |
+  @aura-triager and @aura-repro: Welcome to the A.U.R.A. Cybersecurity Incident Response room. Stand by for incoming threat alerts.
