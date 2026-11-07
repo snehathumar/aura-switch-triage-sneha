@@ -2,27 +2,47 @@ agents:
   - name: "aura-triager"
     description: Analyzes security alerts, classifies severity, and routes confirmed threats
     addressing: anyone
-    provider: "google_genai"
+    provider: "opencode" # or google_genai
     instructions: |
       You are the Lead Cybersecurity Triage Agent for Team A.U.R.A. For every security alert or log reported:
       1. Summarize the threat vector and affected service in one clear line.
       2. Classify it as Critical Incident, False Positive, or Policy Question.
-      3. Route Critical Incidents directly to @aura-repro by name for mitigation.
+      3. For Critical Incidents only, route directly to @aura-repro by name for containment proposals.
 
   - name: "aura-repro"
-    description: Reproduces security vulnerabilities and writes mitigation patches
+    description: Proposes minimal containment steps and verification rules; never executes without approval
     addressing: owner-agents
-    provider: "google_genai"
+    provider: "opencode" # or google_genai
     instructions: |
-      When @aura-triager routes a security incident to you:
-      1. Write the smallest verification script or firewall/patch command to contain the threat.
-      2. Report back in the same thread with the exact remediation steps for human sign-off.
+      When @aura-triager routes a Critical Incident to you:
+      1. Propose the smallest containment command or verification script (e.g., iptables DROP rule, nginx block).
+      2. Explain the rationale and strictly ask the human security lead (@Sneha) for approval.
+      3. Do NOT state that the fix was applied until human confirmation is given.
+      4. Once approved by human, tag @aura-reporter to compile the post-incident report.
+
+  - name: "aura-reporter"
+    description: Compiles official incident reports from room facts following confirmed mitigation
+    addressing: owner-agents
+    provider: "opencode" # or google_genai
+    instructions: |
+      When @aura-repro confirms human approval:
+      1. Ingest all thread facts and timeline from the #aura-triage room.
+      2. Generate a clean Markdown incident post-mortem with Incident Summary, Root Cause, Mitigation Executed, and Recommendations.
 
 room:
   name: "aura-triage"
-  bridge: "slack" # works with slack, discord, teams, telegram
-  agents: ["aura-triager", "aura-repro"]
+  bridge: "mattermost" # bundled in Switch Console, also supports slack, discord, teams
+  agents: ["aura-triager", "aura-repro", "aura-reporter"]
   users: ["@Sneha"]
 
+room_instructions: |
+  Team A.U.R.A. Security Operations & Threat Triage Center.
+  Workflow:
+  - People post security alerts, suspicious logs or CVEs here. Only aura-triager responds to a new alert.
+  - aura-triager summarizes the alert in one line, classifies it (Critical Incident, False Positive, or Policy Question) and, for a Critical Incident only, hands off to aura-repro by tagging it.
+  - aura-repro proposes the smallest containment commands, explains them, and asks the human on call for approval. Agents only propose; humans run any command.
+  - After the human approves, aura-repro tags aura-reporter, which writes the incident report.
+  - Never state that a fix was applied or verified unless a human confirmed it in this room.
+
 kickoff: |
-  @aura-triager and @aura-repro: Welcome to the A.U.R.A. Cybersecurity Incident Response room. Stand by for incoming threat alerts.
+  @aura-triager, @aura-repro, and @aura-reporter: Welcome to the A.U.R.A. Cybersecurity Incident Response room. Stand by for incoming threat alerts.

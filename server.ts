@@ -476,6 +476,12 @@ async function startServer() {
   const distPath = path.resolve(__dirname, 'dist');
   const hasDist = fs.existsSync(distPath);
 
+  // Serve public folder directly for optimized video streaming and HTTP 206 range requests
+  const publicPath = path.resolve(__dirname, 'public');
+  if (fs.existsSync(publicPath)) {
+    app.use(express.static(publicPath));
+  }
+
   if (isProd && hasDist) {
     console.log(`[Switch Server] Production mode: Serving static files from ${distPath}`);
     app.use(express.static(distPath));

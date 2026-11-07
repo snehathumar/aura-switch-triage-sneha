@@ -1,0 +1,21 @@
+# Synthetic Test Alerts for A.U.R.A. (Team aura - Switch Hackathon)
+# All IP addresses use standard RFC 5737 documentation test blocks:
+# - 198.51.100.0/24 (TEST-NET-2)
+# - 203.0.113.0/24  (TEST-NET-3)
+# - 192.0.2.0/24    (TEST-NET-1)
+
+---
+ALERT 1 (Critical Incident - SQL Injection Exfiltration):
+ALERT: 342 SQL injection attempts detected on web-03 exfiltrating 4.1MB of customer tables from 198.51.100.24 targeting /api/v2/users endpoint. Immediate triage required.
+
+---
+ALERT 2 (Critical Incident - SSH Brute Force):
+ALERT: 5,420 Failed SSH Logins on Production Bastion host-auth-01 from 203.0.113.19 within 3 minutes. High risk of credential stuffing breach.
+
+---
+ALERT 3 (False Positive - Automated Vulnerability Scan):
+ALERT: Rapid succession of 404 and 403 HTTP status codes on staging-cluster-02 from internal security scanner IP 192.0.2.10. Scheduled weekly penetration test window active.
+
+---
+ALERT 4 (Policy Question - IAM Role Scope):
+QUESTION: Developer @alex requesting temporary elevated IAM role access to prod-analytics-db for database migration schema verification. Does this violate SOC2 change management policy?
