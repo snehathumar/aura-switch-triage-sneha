@@ -107,8 +107,6 @@ Wispr Flow Insights at the time of submission: **151 words per minute (shown as 
 6. **Activity Heatmap Telemetry:**  
    ![Wispr Activity Heatmap](wispr-activity.png)
 
-7. **Full Desktop Telemetry Scorecard:**  
-   ![Wispr Flow Full Desktop Dashboard](wispr-scorecard.png)
 
 ## Limitations and next steps
 
