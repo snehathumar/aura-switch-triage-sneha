@@ -4,8 +4,8 @@
 > **Flip the Switch Hackathon Submission**  
 > **Team:** aura (Lead: @snehathumar)  
 > **Track:** Track 1 - Best Business Workflow ($2,000)  
-> **Side Tracks:** Code with Wispr ($500) | Best Blog Track (AirPods 5)  
-> **Live Demo App:** https://ais-pre-wije7negbmt2nybprhcr3c-922040312159.asia-east1.run.app
+> **Side Tracks:** Code with Wispr ($500)  
+> **Live Demo App:** [https://ais-pre-wije7negbmt2nybprhcr3c-922040312159.asia-east1.run.app](https://switch-open-source-ai-teammates-777.ai.studio)
 
 ---
 
